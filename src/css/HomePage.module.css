@@ -1,0 +1,58 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100vh;
+  text-align: center;
+}
+.container .logo {
+  width: 400px;
+  margin: 30px;
+}
+.container .header {
+  font-size: 1.5rem;
+}
+.container .login-form {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+}
+.container .login-form .form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container .login-form .divider {
+  width: 4px;
+  height: 200px;
+  background-color: #9f9f9f;
+  border-radius: 8px;
+}
+
+.input-field {
+  margin: 5px 0;
+  padding: 10px;
+  width: 300px;
+  border-radius: 8px;
+  border: 2px solid rgb(162, 162, 162);
+}
+
+.btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.login-btn {
+  background-color: rgb(23, 156, 54);
+  border: none;
+  color: #fff;
+}
+
+.registration-btn {
+  width: 280px;
+}/*# sourceMappingURL=HomePage.module.css.map */
