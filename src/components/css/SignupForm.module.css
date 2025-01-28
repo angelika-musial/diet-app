@@ -1,0 +1,10 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100vh;
+}
+.container .form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}/*# sourceMappingURL=SignupForm.module.css.map */

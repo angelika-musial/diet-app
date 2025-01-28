@@ -1,11 +1,11 @@
-import styles from './HomePage.module.scss';
+import styles from './StartPage.module.scss';
 import logo from '../assets/logo.png';
 
 import Input from '../components/Input/Input';
 import Button from '../components/Button/Button';
 import { Link } from 'react-router-dom';
 
-const HomePage = () => {
+export default function StartPage() {
 	return (
 		<div className={styles.container}>
 			<img src={logo} alt='CalorIQ logo' className={styles.logo} />
@@ -18,8 +18,20 @@ const HomePage = () => {
 				<div>
 					<h3 className={styles.title}>Zaloguj się</h3>
 					<form className={styles.form}>
-						<Input type='email' placeholder='Adres e-mail' required />
-						<Input type='password' placeholder='Hasło' required />
+						<Input
+							type='email'
+							id='email'
+							name='email'
+							placeholder='Adres e-mail'
+							required
+						/>
+						<Input
+							type='password'
+							id='password'
+							name='password'
+							placeholder='Hasło'
+							required
+						/>
 						<Button type='submit' variant='primary'>
 							Zaloguj się
 						</Button>
@@ -37,6 +49,4 @@ const HomePage = () => {
 			</div>
 		</div>
 	);
-};
-
-export default HomePage;
+}
