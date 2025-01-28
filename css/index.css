@@ -5,12 +5,19 @@
   padding: 0;
 }
 
-html {
-  font-family: "Roboto", sans-serif;
-  font-size: 16px;
+:root {
+  --black-color: #2b2b2b;
+  --green-color: #179c36;
+  --dark-green: #007e02;
+  --gray-color: #d0d0d0;
+  --dark-gray: #9f9f9f;
+  --white-color: #fbfbfb;
+  --focus-color: #00410f;
 }
 
 body {
-  background-color: #c6c6c6;
-  color: #2b2b2b;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  background-color: var(--gray-color);
+  color: var(--black-color);
 }/*# sourceMappingURL=index.css.map */

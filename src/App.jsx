@@ -1,16 +1,21 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import RootLayout from './pages/RootLayout';
 import HomePage from './pages/HomePage';
 import RegistrationPage from './pages/RegistrationPage';
 
+const router = createBrowserRouter([
+	{
+		path: '/',
+		element: <RootLayout />,
+		children: [
+			{ index: true, element: <HomePage /> },
+			{ path: 'signup', element: <RegistrationPage /> },
+		],
+	},
+]);
+
 const App = () => {
-	return (
-		<Router>
-			<Routes>
-				<Route path='/' element={<HomePage />} />
-				<Route path='/register' element={<RegistrationPage />} />
-			</Routes>
-		</Router>
-	);
+	return <RouterProvider router={router} />;
 };
 
 export default App;

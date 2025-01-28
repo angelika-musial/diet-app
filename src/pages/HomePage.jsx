@@ -3,6 +3,7 @@ import logo from '../assets/logo.png';
 
 import Input from '../components/Input/Input';
 import Button from '../components/Button/Button';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
 	return (
@@ -29,7 +30,7 @@ const HomePage = () => {
 
 				<div>
 					<h3 className={styles.title}>Nie masz jeszcze konta?</h3>
-					<Button variant='secondary' navigateTo='/register'>
+					<Button as={Link} to='/signup' variant='secondary'>
 						Zarejestruj się
 					</Button>
 				</div>

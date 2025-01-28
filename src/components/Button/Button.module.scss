@@ -1,9 +1,11 @@
 .btn {
+	display: inline-block;
 	width: 300px;
 	padding: 10px;
 	border-radius: 8px;
 	font-size: 1rem;
 	text-transform: uppercase;
+	text-decoration: none;
 	outline: none;
 	transition: all 0.3s;
 
@@ -29,6 +31,7 @@
 }
 
 .secondary {
+	color: var(--black-color);
 	background-color: var(--white-color);
 	border: 3px solid var(--dark-gray);
 

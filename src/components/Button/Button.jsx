@@ -1,30 +1,15 @@
 import styles from './Button.module.scss';
-import { useNavigate } from 'react-router-dom';
 
 const Button = ({
 	variant = 'primary',
-	type = 'button',
-	navigateTo,
+	as: Component = 'button',
 	children,
 	...props
 }) => {
-	const navigate = useNavigate();
-
-	const handleClick = () => {
-		if (navigateTo) {
-			navigate(navigateTo);
-		}
-		props.onClick?.();
-	};
-
 	return (
-		<button
-			className={`${styles.btn} ${styles[variant]}`}
-			{...props}
-			onClick={handleClick}
-		>
+		<Component className={`${styles.btn} ${styles[variant]}`} {...props}>
 			{children}
-		</button>
+		</Component>
 	);
 };
 
