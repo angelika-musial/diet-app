@@ -1,10 +1,36 @@
 .container {
-	max-width: 1200px;
 	margin: 0 auto;
+	max-width: 1200px;
 	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
 	.form {
+		width: 90%;
+		max-width: 400px;
+		padding: 40px 0;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		background-color: var(--white-color);
+		border-radius: 8px;
+		box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.35);
+
+		.header {
+			margin-bottom: 30px;
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.header {
+		font-size: 1.8rem;
+	}
+}
+
+@media (max-width: 576px) {
+	.header {
+		font-size: 1.6rem;
 	}
 }

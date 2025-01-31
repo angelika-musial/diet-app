@@ -45,4 +45,9 @@
   .btn {
     font-size: 0.8rem;
   }
+}
+@media (max-width: 375px) {
+  .btn {
+    width: 250px;
+  }
 }/*# sourceMappingURL=Button.module.css.map */

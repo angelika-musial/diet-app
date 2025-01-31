@@ -3,6 +3,7 @@ import RootLayout from './pages/RootLayout';
 import StartPage from './pages/StartPage';
 import RegistrationPage from './pages/RegistrationPage';
 import MainPage from './pages/MainPage';
+import ProfileSetup from './pages/ProfileSetup';
 
 const router = createBrowserRouter([
 	{
@@ -12,6 +13,7 @@ const router = createBrowserRouter([
 			{ index: true, element: <StartPage /> },
 			{ path: 'signup', element: <RegistrationPage /> },
 			{ path: 'main', element: <MainPage /> },
+			{ path: 'profile-setup', element: <ProfileSetup /> },
 		],
 	},
 ]);
