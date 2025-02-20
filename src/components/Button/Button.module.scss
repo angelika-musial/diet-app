@@ -6,20 +6,20 @@
 	font-size: 1rem;
 	text-transform: uppercase;
 	text-decoration: none;
-	outline: none;
 	transition: all 0.3s;
+	cursor: pointer;
 
 	&:active {
 		transform: scale(0.97);
 	}
 
 	&:focus-visible {
+		outline: none;
 		border: 3px solid var(--focus-color);
 	}
 }
 
 .primary {
-	margin-top: 20px;
 	background-color: var(--green-color);
 	border: 3px solid var(--green-color);
 	color: var(--white-color);
@@ -54,6 +54,6 @@
 
 @media (max-width: 375px) {
 	.btn {
-		width: 250px;;
+		width: 250px;
 	}
 }

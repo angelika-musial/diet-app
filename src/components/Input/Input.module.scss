@@ -6,10 +6,17 @@
 	width: 300px;
 	border-radius: 8px;
 	border: 3px solid var(--dark-gray);
-	outline: none;
+
+	&:focus {
+		outline: none;
+	}
 
 	&:focus-visible {
 		border: 3px solid var(--focus-color);
+	}
+
+	&:last-of-type {
+		margin-bottom: 24px;
 	}
 }
 
@@ -27,6 +34,6 @@
 
 @media (max-width: 375px) {
 	.input-field {
-		width: 250px;;
+		width: 250px;
 	}
 }

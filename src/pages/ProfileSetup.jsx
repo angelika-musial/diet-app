@@ -1,3 +1,5 @@
+import StepForm from '../components/StepForm/StepForm';
+
 export default function ProfileSetup() {
-	return 
+	return <StepForm />;
 }

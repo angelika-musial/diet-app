@@ -1,0 +1,103 @@
+.container {
+	margin: 0 auto;
+	max-width: 1200px;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.form {
+		position: relative;
+		width: 90%;
+		max-width: 800px;
+		height: 450px;
+		padding: 40px;
+		background-color: var(--white-color);
+		border-radius: 8px;
+		box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.35);
+
+		.step {
+			.gender-buttons {
+				margin: 30px 0;
+				display: flex;
+				justify-content: center;
+				gap: 20px;
+				.gender-button {
+					font-size: 1.2rem;
+					font-weight: bold;
+					text-transform: uppercase;
+					padding: 20px;
+					width: 200px;
+					color: var(--black-color);
+					background-color: var(--gray-color);
+					border: 3px solid var(--black-color);
+					border-radius: 8px;
+					cursor: pointer;
+					transition: all 0.3s;
+
+					&.active {
+						border: 3px solid var(--green-color);
+						box-shadow: 0 0 10px rgba(127, 255, 129, 0.6);
+					}
+
+					&:focus-visible {
+						outline: none;
+						border-color: #c00000;
+						box-shadow: 0 0 10px rgba(192, 0, 0, 0.6);
+					}
+				}
+			}
+
+			.activity-container {
+				ul {
+					list-style: none;
+					display: flex;
+					flex-direction: column;
+					gap: 10px;
+
+					button {
+						padding: 10px;
+						font-size: 1.1rem;
+						color: var(--black-color);
+						background-color: var(--gray-color);
+						border: 3px solid var(--black-color);
+						border-radius: 8px;
+						cursor: pointer;
+						transition: all 0.3s;
+
+						&.active {
+							border: 3px solid var(--green-color);
+							box-shadow: 0 0 10px rgba(127, 255, 129, 0.6);
+						}
+
+						&:focus-visible {
+							outline: none;
+							border-color: #c00000;
+							box-shadow: 0 0 10px rgba(192, 0, 0, 0.6);
+						}
+					}
+				}
+			}
+		}
+
+		.buttons-container {
+			position: absolute;
+			bottom: 70px;
+			left: 0;
+			width: 100%;
+			padding: 0 20px;
+
+			.prev-button {
+				position: absolute;
+				left: 20px;
+				width: 150px;
+			}
+
+			.next-button {
+				position: absolute;
+				right: 20px;
+				width: 150px;
+			}
+		}
+	}
+}
