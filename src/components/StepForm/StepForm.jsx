@@ -13,6 +13,7 @@ export default function StepForm() {
 	const [formData, setFormData] = useState({
 		gender: '',
 		age: '',
+		birthdate: '',
 		weight: '',
 		height: '',
 		activity: '',
@@ -38,9 +39,15 @@ export default function StepForm() {
 				{step === 1 && (
 					<StepGender setFormData={setFormData} formData={formData} />
 				)}
-				{step === 2 && <StepBirthdate setFormData={setFormData} />}
-				{step === 3 && <StepWeight setFormData={setFormData} formData={formData} />}
-				{step === 4 && <StepHeight setFormData={setFormData} formData={formData} />}
+				{step === 2 && (
+					<StepBirthdate setFormData={setFormData} formData={formData} />
+				)}
+				{step === 3 && (
+					<StepWeight setFormData={setFormData} formData={formData} />
+				)}
+				{step === 4 && (
+					<StepHeight setFormData={setFormData} formData={formData} />
+				)}
 				{step === 5 && (
 					<StepActivity setFormData={setFormData} formData={formData} />
 				)}

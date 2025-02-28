@@ -5,99 +5,259 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
 
+.form {
+	position: relative;
+	width: 90%;
+	max-width: 800px;
+	height: 500px;
+	padding: 40px 80px;
+	background-color: var(--white-color);
+	border-radius: 16px;
+	box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.35);
+	overflow: hidden;
+}
+
+.step-title {
+	font-size: 2rem;
+	font-weight: bold;
+	text-align: center;
+}
+
+.divider {
+	margin: 20px auto 30px;
+	height: 3px;
+	width: 90%;
+	background-color: var(--dark-gray);
+	border-radius: 8px;
+}
+
+.step-content {
+	display: flex;
+	justify-content: center;
+}
+
+.step-content p {
+	font-size: 1.3rem;
+}
+
+.gender-buttons {
+	display: flex;
+	gap: 30px;
+	margin-top: 30px;
+}
+
+.gender-button {
+	font-size: 1.2rem;
+	font-weight: bold;
+	text-transform: uppercase;
+	padding: 20px;
+	width: 200px;
+	color: var(--black-color);
+	background-color: var(--white-color);
+	border: 3px solid var(--dark-gray);
+	border-radius: 8px;
+	cursor: pointer;
+	transition: all 0.3s;
+
+	&.active {
+		border: 3px solid var(--green-color);
+		box-shadow: 0 0 10px rgba(127, 255, 129, 0.6);
+	}
+
+	&:focus-visible {
+		outline: none;
+		border-color: #c00000;
+	}
+}
+
+.input {
+	font-size: 1.2rem;
+	margin-top: 30px;
+	text-align: center;
+
+	&:focus-visible {
+		border: 3px solid var(--green-color);
+	}
+}
+
+.activity-container ul {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.activity-container li {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.arrow-icon {
+	position: absolute;
+	left: -30px;
+	color: var(--green-color);
+	opacity: 0;
+	transform: translateX(-10px);
+}
+
+.active-item .arrow-icon {
+	animation: arrowAnimation 0.3s ease-in-out forwards;
+}
+
+.activity-container button {
+	padding: 10px;
+	font-size: 1.1rem;
+	width: 100%;
+	text-align: left;
+	color: var(--black-color);
+	background-color: var(--white-color);
+	border: 3px solid var(--dark-gray);
+	border-radius: 8px;
+	cursor: pointer;
+	transition: all 0.3s;
+
+	&.active {
+		border: 3px solid var(--green-color);
+		box-shadow: 0 0 10px rgba(127, 255, 129, 0.6);
+	}
+
+	&:focus-visible {
+		outline: none;
+		border-color: #c00000;
+	}
+}
+
+.buttons-container {
+	position: absolute;
+	bottom: 60px;
+	left: 0;
+	width: 100%;
+	padding: 0 20px;
+
+	.prev-button {
+		position: absolute;
+		left: 20px;
+		width: 150px;
+	}
+
+	.next-button {
+		position: absolute;
+		right: 20px;
+		width: 150px;
+	}
+}
+
+@media (max-width: 992px) {
 	.form {
-		position: relative;
-		width: 90%;
-		max-width: 800px;
-		height: 450px;
-		padding: 40px;
-		background-color: var(--white-color);
-		border-radius: 8px;
-		box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.35);
+		height: 550px;
+	}
+	.step-title {
+		font-size: 1.8rem;
+	}
+}
 
-		.step {
-			.gender-buttons {
-				margin: 30px 0;
-				display: flex;
-				justify-content: center;
-				gap: 20px;
-				.gender-button {
-					font-size: 1.2rem;
-					font-weight: bold;
-					text-transform: uppercase;
-					padding: 20px;
-					width: 200px;
-					color: var(--black-color);
-					background-color: var(--gray-color);
-					border: 3px solid var(--black-color);
-					border-radius: 8px;
-					cursor: pointer;
-					transition: all 0.3s;
+@media (max-width: 768px) {
+	.form {
+		height: 580px;
+	}
 
-					&.active {
-						border: 3px solid var(--green-color);
-						box-shadow: 0 0 10px rgba(127, 255, 129, 0.6);
-					}
+	.step-title {
+		font-size: 1.6rem;
+	}
 
-					&:focus-visible {
-						outline: none;
-						border-color: #c00000;
-						box-shadow: 0 0 10px rgba(192, 0, 0, 0.6);
-					}
-				}
-			}
+	.step-content p {
+		font-size: 1.2rem;
+	}
 
-			.activity-container {
-				ul {
-					list-style: none;
-					display: flex;
-					flex-direction: column;
-					gap: 10px;
+	.gender-button {
+		font-size: 1.1rem;
+		padding: 15px;
+		width: 180px;
+	}
+}
 
-					button {
-						padding: 10px;
-						font-size: 1.1rem;
-						color: var(--black-color);
-						background-color: var(--gray-color);
-						border: 3px solid var(--black-color);
-						border-radius: 8px;
-						cursor: pointer;
-						transition: all 0.3s;
+@media (max-width: 576px) {
+	.form {
+		padding: 30px 50px;
+	}
 
-						&.active {
-							border: 3px solid var(--green-color);
-							box-shadow: 0 0 10px rgba(127, 255, 129, 0.6);
-						}
+	.step-title {
+		font-size: 1.5rem;
+	}
 
-						&:focus-visible {
-							outline: none;
-							border-color: #c00000;
-							box-shadow: 0 0 10px rgba(192, 0, 0, 0.6);
-						}
-					}
-				}
-			}
+	.divider {
+		margin: 20px auto;
+	}
+
+	.input {
+		font-size: 1.1rem;
+		width: 70%;
+	}
+
+	.gender-buttons {
+		flex-direction: column;
+	}
+
+	.gender-button {
+		width: 220px;
+		font-size: 1.1rem;
+	}
+
+	.activity-container button {
+		font-size: 1rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.form {
+		height: 560px;
+		padding: 30px;
+	}
+
+	.step-title {
+		font-size: 1.3rem;
+	}
+
+	.step-content p {
+		font-size: 1.1rem;
+	}
+
+	.input {
+		font-size: 1rem;
+	}
+
+	.gender-button {
+		width: 180px;
+		font-size: 1rem;
+	}
+
+	.activity-container button {
+		font-size: 0.9rem;
+	}
+
+	.active-item .arrow-icon {
+		animation: none;
+	}
+
+	.buttons-container {
+		.prev-button,
+		.next-button {
+			width: 110px;
+			font-size: 0.7rem;
 		}
+	}
+}
 
-		.buttons-container {
-			position: absolute;
-			bottom: 70px;
-			left: 0;
-			width: 100%;
-			padding: 0 20px;
-
-			.prev-button {
-				position: absolute;
-				left: 20px;
-				width: 150px;
-			}
-
-			.next-button {
-				position: absolute;
-				right: 20px;
-				width: 150px;
-			}
-		}
+@keyframes arrowAnimation {
+	from {
+		opacity: 0;
+		transform: translateX(-10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
 	}
 }

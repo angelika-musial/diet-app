@@ -1,44 +1,55 @@
 import styles from '../StepForm.module.scss';
-import Button from '../../Button/Button';
+import Step from './Step';
+import { ChevronRight } from 'lucide-react';
 
-export default function StepActivity({ prevStep, setFormData, formData }) {
+export default function StepActivity({ setFormData, formData }) {
+	const activities = [
+		{ value: 1.2, label: 'Brak aktywności (tryb siedzący)' },
+		{ value: 1.4, label: 'Niska aktywność (sporadyczny ruch)' },
+		{
+			value: 1.65,
+			label: 'Średnia aktywność (amatorskie trenowanie kilka razy w tygodniu)',
+		},
+		{
+			value: 1.9,
+			label:
+				'Wysoka aktywość (regularne uprawianie sportu o dużej intensywności)',
+		},
+		{
+			value: 2.2,
+			label: 'Bardzo wysoka aktywność (zawodowe uprawianie sportu)',
+		},
+	];
+
 	return (
-		<div className={styles.step}>
-			<h1>Jaki jest Twój poziom aktywności fizycznej?</h1>
+		<Step title='Jaki jest Twój poziom aktywności fizycznej?'>
 			<div className={styles.activityContainer}>
 				<ul>
-					{[
-						{ value: '1.2', text: 'Brak aktywności (tryb siedzący)' },
-						{ value: '1.4', text: 'Niska aktywność (sporadyczny ruch)' },
-						{
-							value: '1.65',
-							text: 'Średnia aktywność (amatorskie trenowanie kilka razy w tygodniu)',
-						},
-						{
-							value: '1.9',
-							text: 'Wysoka aktywość (regularne uprawianie sportu o dużej intensywności)',
-						},
-						{
-							value: '2.2',
-							text: 'Bardzo wysoka aktywność (zawodowe uprawianie sportu)',
-						},
-					].map((option) => (
-						<li key={option.value}>
+					{activities.map((activity) => (
+						<li
+							key={activity.value}
+							className={
+								formData.activity === activity.value ? styles.activeItem : ''
+							}
+						>
+							{formData.activity === activity.value && (
+								<ChevronRight size={24} className={styles.arrowIcon} />
+							)}
 							<button
 								type='button'
 								onClick={() =>
-									setFormData({ ...formData, activity: option.value })
+									setFormData((prev) => ({ ...prev, activity: activity.value }))
 								}
 								className={
-									formData.activity === option.value ? styles.active : ''
+									formData.activity === activity.value ? styles.active : ''
 								}
 							>
-								{option.text}
+								{activity.label}
 							</button>
 						</li>
 					))}
 				</ul>
 			</div>
-		</div>
+		</Step>
 	);
 }

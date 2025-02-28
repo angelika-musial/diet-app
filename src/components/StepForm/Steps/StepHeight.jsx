@@ -1,27 +1,27 @@
-import styles from '../StepForm.module.scss';
 import Input from '../../Input/Input';
+import Step from './Step';
+import styles from '../StepForm.module.scss';
 
 export default function StepHeight({ setFormData, formData }) {
-
 	const handleHeightChange = (e) => {
-		const newHeight = e.target.value;
-		setFormData({
-			...formData,
-			height: newHeight,
-		});
+		const height = parseFloat(e.target.value);
+		setFormData((prev) => ({
+			...prev,
+			height,
+		}));
 	};
 
 	return (
-		<div className={styles.step}>
-			<h1>Jaki jest Twój wzrost?</h1>
+		<Step title='Jaki jest Twój wzrost?'>
 			<Input
 				type='number'
 				id='height'
 				name='height'
 				placeholder='Wzrost (cm)'
+				className={styles.input}
 				value={formData.height || ''}
 				onChange={handleHeightChange}
 			/>
-		</div>
+		</Step>
 	);
 }

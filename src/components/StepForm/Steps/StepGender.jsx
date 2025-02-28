@@ -1,40 +1,32 @@
 import styles from '../StepForm.module.scss';
-import { useState } from 'react';
+import Step from './Step';
 
-export default function StepGender({
-	setFormData,
-	formData,
-}) {
-	const [selectedGender, setSelectedGender] = useState(formData.gender);
-
+export default function StepGender({ setFormData, formData }) {
 	const handleSelectGender = (gender) => {
-		setSelectedGender(gender);
-		setFormData({ ...formData, gender });
+		setFormData((prev) => ({ ...prev, gender }));
 	};
 
+	const genders = [
+		{ value: 'female', label: 'Kobieta' },
+		{ value: 'male', label: 'Mężczyzna' },
+	];
+
 	return (
-		<div className={styles.step}>
-			<h1>Jaka jest twoja płeć?</h1>
+		<Step title='Jaka jest Twoja płeć?'>
 			<div className={styles.genderButtons}>
-				<button
-					type='button'
-					onClick={() => handleSelectGender('female')}
-					className={`${styles.genderButton} ${
-						selectedGender === 'female' ? styles.active : ''
-					}`}
-				>
-					Kobieta
-				</button>
-				<button
-					type='button'
-					onClick={() => handleSelectGender('male')}
-					className={`${styles.genderButton} ${
-						selectedGender === 'male' ? styles.active : ''
-					}`}
-				>
-					Mężczyzna
-				</button>
+				{genders.map((gender) => (
+					<button
+						key={gender.value}
+						type='button'
+						onClick={() => handleSelectGender(gender.value)}
+						className={`${styles.genderButton} ${
+							formData.gender === gender.value ? styles.active : ''
+						}`}
+					>
+						{gender.label}
+					</button>
+				))}
 			</div>
-		</div>
+		</Step>
 	);
 }
