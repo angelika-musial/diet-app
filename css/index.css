@@ -9,10 +9,10 @@
   --black-color: #2b2b2b;
   --green-color: #179c36;
   --dark-green: #007e02;
-  --gray-color: #d0d0d0;
-  --dark-gray: #9f9f9f;
+  --gray-color: #e1e1e1;
+  --dark-gray: #959595;
   --white-color: #fbfbfb;
-  --focus-color: #00410f;
+  --focus-color: #c00000;
 }
 
 body {
