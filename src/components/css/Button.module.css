@@ -6,18 +6,18 @@
   font-size: 1rem;
   text-transform: uppercase;
   text-decoration: none;
-  outline: none;
   transition: all 0.3s;
+  cursor: pointer;
 }
 .btn:active {
   transform: scale(0.97);
 }
 .btn:focus-visible {
+  outline: none;
   border: 3px solid var(--focus-color);
 }
 
 .primary {
-  margin-top: 20px;
   background-color: var(--green-color);
   border: 3px solid var(--green-color);
   color: var(--white-color);
@@ -46,8 +46,8 @@
     font-size: 0.8rem;
   }
 }
-@media (max-width: 375px) {
+@media (max-width: 376px) {
   .btn {
-    width: 250px;
+    width: 270px;
   }
 }/*# sourceMappingURL=Button.module.css.map */

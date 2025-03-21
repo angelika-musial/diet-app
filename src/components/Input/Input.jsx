@@ -1,14 +1,20 @@
 import styles from './Input.module.scss';
+import { CircleAlert } from 'lucide-react';
 
-const Input = ({ label, id, className, ...props }) => {
+const Input = ({ label, id, className, error, ...props }) => {
 	return (
 		<>
-			<label htmlFor={id}>{label}</label>
-			<input
-				id={id}
-				className={`${styles.inputField} ${className}`}
-				{...props}
-			/>
+			<div className={styles.inputWrapper}>
+				<label htmlFor={id}>{label}</label>
+				{error && <p className={styles.error}><CircleAlert size={14} /> {error}</p>}
+				<input
+					id={id}
+					className={`${styles.inputField} ${
+						error ? styles.inputError : ''
+					} ${className}`}
+					{...props}
+				/>
+			</div>
 		</>
 	);
 };
