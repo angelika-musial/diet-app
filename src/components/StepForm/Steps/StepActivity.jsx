@@ -2,7 +2,7 @@ import styles from '../StepForm.module.scss';
 import Step from './Step';
 import { ChevronRight } from 'lucide-react';
 
-export default function StepActivity({ setFormData, formData }) {
+export default function StepActivity({ setValue, watch }) {
 	const activities = [
 		{ value: 1.2, label: 'Brak aktywności (tryb siedzący)' },
 		{ value: 1.4, label: 'Niska aktywność (sporadyczny ruch)' },
@@ -13,7 +13,7 @@ export default function StepActivity({ setFormData, formData }) {
 		{
 			value: 1.9,
 			label:
-				'Wysoka aktywość (regularne uprawianie sportu o dużej intensywności)',
+				'Wysoka aktywność (regularne uprawianie sportu o dużej intensywności)',
 		},
 		{
 			value: 2.2,
@@ -21,33 +21,35 @@ export default function StepActivity({ setFormData, formData }) {
 		},
 	];
 
+	const selectedActivity = watch('activity');
+
 	return (
 		<Step title='Jaki jest Twój poziom aktywności fizycznej?'>
-			<div className={styles.activityContainer}>
+			<div className={styles.optionsContainer}>
 				<ul>
-					{activities.map((activity) => (
-						<li
-							key={activity.value}
-							className={
-								formData.activity === activity.value ? styles.activeItem : ''
-							}
-						>
-							{formData.activity === activity.value && (
-								<ChevronRight size={24} className={styles.arrowIcon} />
-							)}
-							<button
-								type='button'
-								onClick={() =>
-									setFormData((prev) => ({ ...prev, activity: activity.value }))
-								}
-								className={
-									formData.activity === activity.value ? styles.active : ''
-								}
+					{activities.map((activity) => {
+						const isActive = selectedActivity === activity.value;
+
+						return (
+							<li
+								key={activity.value}
+								className={isActive ? styles.activeItem : ''}
 							>
-								{activity.label}
-							</button>
-						</li>
-					))}
+								{isActive && (
+									<ChevronRight size={24} className={styles.arrowIcon} />
+								)}
+								<button
+									type='button'
+									onClick={() => {
+										setValue('activity', activity.value);
+									}}
+									className={isActive ? styles.active : ''}
+								>
+									{activity.label}
+								</button>
+							</li>
+						);
+					})}
 				</ul>
 			</div>
 		</Step>

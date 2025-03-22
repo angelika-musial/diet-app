@@ -1,15 +1,13 @@
 import styles from '../StepForm.module.scss';
 import Step from './Step';
 
-export default function StepGender({ setFormData, formData }) {
-	const handleSelectGender = (gender) => {
-		setFormData((prev) => ({ ...prev, gender }));
-	};
-
+export default function StepGender({ setValue, watch }) {
 	const genders = [
 		{ value: 'female', label: 'Kobieta' },
 		{ value: 'male', label: 'Mężczyzna' },
 	];
+
+	const selectedGender = watch('gender');
 
 	return (
 		<Step title='Jaka jest Twoja płeć?'>
@@ -18,9 +16,9 @@ export default function StepGender({ setFormData, formData }) {
 					<button
 						key={gender.value}
 						type='button'
-						onClick={() => handleSelectGender(gender.value)}
+						onClick={() => setValue('gender', gender.value)}
 						className={`${styles.genderButton} ${
-							formData.gender === gender.value ? styles.active : ''
+							selectedGender === gender.value ? styles.active : ''
 						}`}
 					>
 						{gender.label}
