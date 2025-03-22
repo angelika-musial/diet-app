@@ -1,0 +1,272 @@
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form {
+  position: relative;
+  width: 90%;
+  max-width: 800px;
+  height: 500px;
+  padding: 40px 80px;
+  background-color: var(--white-color);
+  border-radius: 16px;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+.step-title {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.divider {
+  margin: 20px auto 30px;
+  height: 3px;
+  width: 90%;
+  background-color: var(--dark-gray);
+  border-radius: 8px;
+}
+
+.step-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.step-content p {
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.gender-buttons {
+  display: flex;
+  gap: 30px;
+}
+
+.gender-button {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 20px;
+  width: 200px;
+  color: var(--dark-gray);
+  background-color: var(--white-color);
+  border: 3px solid var(--dark-gray);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.gender-button.active, .gender-button:hover {
+  color: var(--black-color);
+  border: 3px solid var(--black-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+.gender-button:focus-visible {
+  outline: none;
+  color: var(--black-color);
+  border-color: #c00000;
+}
+
+.input {
+  font-size: 1.2rem;
+  color: var(--dark-gray);
+  text-align: center;
+}
+
+.options-container ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.options-container li {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.options-container button {
+  padding: 10px;
+  font-size: 1.1rem;
+  width: 100%;
+  text-align: left;
+  color: var(--black-color);
+  background-color: var(--white-color);
+  border: 3px solid var(--dark-gray);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.options-container button:hover {
+  background-color: #ececec;
+}
+.options-container button.active {
+  border: 3px solid var(--green-color);
+  box-shadow: 0 0 10px rgba(127, 255, 129, 0.6);
+}
+.options-container button:focus-visible {
+  outline: none;
+  border-color: #c00000;
+}
+
+.step-content .error {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: red;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.arrow-icon {
+  position: absolute;
+  left: -30px;
+  color: var(--green-color);
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.active-item .arrow-icon {
+  animation: arrowAnimation 0.3s ease-in-out forwards;
+}
+
+.summary-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.3rem;
+}
+
+.loader-icon {
+  margin: 0 auto;
+  animation: spin 5s linear infinite;
+}
+
+.complete-button {
+  position: absolute;
+  bottom: 30px;
+}
+
+.buttons-container {
+  position: absolute;
+  bottom: 60px;
+  left: 0;
+  width: 100%;
+  padding: 0 20px;
+}
+.buttons-container .next-button {
+  position: absolute;
+  right: 20px;
+  width: 150px;
+}
+.buttons-container .next-button:disabled {
+  border: 3px solid var(--dark-gray);
+  background-color: var(--gray-color);
+  color: var(--dark-gray);
+  cursor: not-allowed;
+}
+
+@media (max-width: 992px) {
+  .form {
+    height: 550px;
+  }
+  .step-title {
+    font-size: 1.8rem;
+  }
+}
+@media (max-width: 768px) {
+  .form {
+    height: 580px;
+  }
+  .step-title {
+    font-size: 1.6rem;
+  }
+  .step-content p {
+    font-size: 1.2rem;
+  }
+  .gender-button {
+    font-size: 1.1rem;
+    padding: 15px;
+    width: 180px;
+  }
+}
+@media (max-width: 576px) {
+  .form {
+    padding: 30px 50px;
+  }
+  .step-title {
+    font-size: 1.5rem;
+  }
+  .divider {
+    margin: 20px auto;
+  }
+  .input {
+    font-size: 1.1rem;
+    width: 70%;
+  }
+  .gender-buttons {
+    flex-direction: column;
+  }
+  .gender-button {
+    width: 220px;
+    font-size: 1.1rem;
+  }
+  .options-container button {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .form {
+    height: 560px;
+    padding: 30px;
+  }
+  .step-title {
+    font-size: 1.3rem;
+  }
+  .step-content p {
+    font-size: 1.1rem;
+  }
+  .input {
+    font-size: 1rem;
+  }
+  .gender-button {
+    width: 180px;
+    font-size: 1rem;
+  }
+  .options-container button {
+    font-size: 0.9rem;
+  }
+  .active-item .arrow-icon {
+    animation: none;
+  }
+  .buttons-container .prev-button,
+  .buttons-container .next-button {
+    width: 110px;
+    font-size: 0.7rem;
+  }
+}
+@keyframes arrowAnimation {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}/*# sourceMappingURL=StepForm.module.css.map */
