@@ -1,11 +1,17 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Input from '../Input/Input';
 import Button from '../Button/Button';
 import styles from './SignupForm.module.scss';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signupSchema } from '../../utils/validation';
+import { registerUser } from '../../services/auth';
 
 export default function SignupForm() {
+	const navigate = useNavigate();
+	const [firebaseError, setFirebaseError] = useState('');
+
 	const {
 		register,
 		handleSubmit,
@@ -16,9 +22,15 @@ export default function SignupForm() {
 
 	const onSubmit = async (data) => {
 		try {
-			console.log('Dane rejestracyjne:', data);
+			await registerUser(data);
+
+			navigate('/profile-setup');
 		} catch (error) {
-			console.error('Błąd rejestracji:', error);
+			setFirebaseError(
+				error.code === 'auth/email-already-in-use'
+					? 'Ten adres e-mail jest już zarejestrowany.'
+					: 'Coś poszło nie tak. Spróbuj ponownie.'
+			);
 		}
 	};
 
@@ -31,6 +43,9 @@ export default function SignupForm() {
 				aria-busy={isSubmitting}
 			>
 				<h1>Załóż konto</h1>
+
+				{firebaseError && <p className='error'>{firebaseError}</p>}
+
 				<Input
 					placeholder='Imię*'
 					type='text'
