@@ -7,13 +7,16 @@ import StepWeight from './Steps/StepWeight';
 import StepHeight from './Steps/StepHeight';
 import StepActivity from './Steps/StepActivity';
 import Summary from './Steps/Summary';
-import Button from '../Button/Button';
 import StepGoal from './Steps/StepGoal';
+import Button from '../Button/Button';
 import { calculateTDEE } from '../../utils/calculate';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { stepFormSchema } from '../../utils/validation';
 import { calculateAge } from '../../utils/calculate';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../services/firebase';
+import { saveUserProfileData } from '../../services/profile';
 
 export default function StepForm() {
 	const {
@@ -35,6 +38,7 @@ export default function StepForm() {
 		},
 	});
 
+	const [user] = useAuthState(auth);
 	const [step, setStep] = useState(0);
 	const [loading, setLoading] = useState(false);
 	const [tdee, setTDEE] = useState(null);
@@ -59,12 +63,7 @@ export default function StepForm() {
 	const handleKeyDown = (e) => {
 		if (e.key === 'Enter') {
 			e.preventDefault();
-
-			if (step < 6) {
-				nextStep();
-			} else if (step === 6) {
-				handleSubmit(onSubmit)();
-			}
+			step < 6 ? nextStep() : handleSubmit(onSubmit)();
 		}
 	};
 
@@ -81,15 +80,12 @@ export default function StepForm() {
 		return stepConditions[step] || false;
 	};
 
-	const onSubmit = (data) => {
+	const onSubmit = async (data) => {
 		setLoading(true);
 		setStep(7);
 
-		setTimeout(() => {
-			console.log('Dane wejściowe:', data);
-
+		setTimeout(async () => {
 			const age = calculateAge(data.birthdate);
-
 			const calculatedTDEE = calculateTDEE(
 				data.gender,
 				age,
@@ -99,7 +95,16 @@ export default function StepForm() {
 				data.activity
 			);
 
-			console.log('Obliczone TDEE:', calculatedTDEE);
+			const userData = {
+				...data,
+				tdee: calculatedTDEE,
+				age,
+			};
+
+			// zapis do Firebase
+			if (user) {
+				await saveUserProfileData(user.uid, userData);
+			}
 
 			setTDEE(calculatedTDEE);
 			setLoading(false);
