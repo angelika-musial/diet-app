@@ -1,16 +1,16 @@
 import styles from './StartPage.module.scss';
-import logo from '../assets/logo.png';
-import Input from '../components/Input/Input';
-import Button from '../components/Button/Button';
+import logo from '../../assets/logo.png';
+import Input from '../../components/Input/Input';
+import Button from '../../components/Button/Button';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { loginSchema } from '../utils/validation';
+import { loginSchema } from '../../utils/validation';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import RedirectIfAuthenticated from '../utils/RedirectIfAuthenticated';
-import useUserStore from '../store/useUserStore';
-import { loginUser } from '../services/auth';
+import RedirectIfAuthenticated from '../../utils/RedirectIfAuthenticated';
+import useUserStore from '../../store/useUserStore';
+import { loginUser } from '../../services/auth';
 
 export default function StartPage() {
 	const navigate = useNavigate();
