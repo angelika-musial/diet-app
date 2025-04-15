@@ -1,5 +1,10 @@
 import StepForm from '../components/StepForm/StepForm';
+import RedirectIfAuthenticated from '../utils/RedirectIfAuthenticated';
 
 export default function ProfileSetup() {
-	return <StepForm />;
+	return (
+		<RedirectIfAuthenticated>
+			<StepForm />
+		</RedirectIfAuthenticated> 
+	);
 }

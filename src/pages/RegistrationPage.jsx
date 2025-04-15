@@ -1,5 +1,10 @@
-import SignupForm from "../components/SignupForm/SignupForm";
+import SignupForm from '../components/SignupForm/SignupForm';
+import RedirectIfAuthenticated from '../utils/RedirectIfAuthenticated';
 
 export default function RegistrationPage() {
-	return <SignupForm />
+	return (
+		<RedirectIfAuthenticated>
+			<SignupForm />
+		</RedirectIfAuthenticated>
+	);
 }
