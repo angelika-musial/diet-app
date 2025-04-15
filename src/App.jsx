@@ -1,8 +1,8 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import RootLayout from './pages/RootLayout';
-import StartPage from './pages/StartPage';
+import StartPage from './pages/StartPage/StartPage';
 import RegistrationPage from './pages/RegistrationPage';
-import MainPage from './pages/MainPage';
+import MainPage from './pages/MainPage/MainPage'
 import ProfileSetup from './pages/ProfileSetup';
 import ProtectedRoutes from './utils/ProtectedRoutes';
 
