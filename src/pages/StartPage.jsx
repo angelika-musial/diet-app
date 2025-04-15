@@ -6,8 +6,17 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema } from '../utils/validation';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import RedirectIfAuthenticated from '../utils/RedirectIfAuthenticated';
+import useUserStore from '../store/useUserStore';
+import { loginUser } from '../services/auth';
 
 export default function StartPage() {
+	const navigate = useNavigate();
+	const [firebaseError, setFirebaseError] = useState('');
+	const { setUser } = useUserStore();
+
 	const {
 		register,
 		handleSubmit,
@@ -18,58 +27,74 @@ export default function StartPage() {
 
 	const onSubmit = async (data) => {
 		try {
-			console.log('Dane logowania:', data);
+			const { user, userData } = await loginUser(data.email, data.password);
+			setUser({
+				uid: user.uid,
+				name: userData.name,
+				surname: userData.surname,
+				email: user.email,
+			});
+			navigate('/main');
 		} catch (error) {
-			console.error('Błąd logowania:', error);
+			setFirebaseError(
+				error.code === 'auth/invalid-credential'
+					? 'Niepoprawny login lub hasło.'
+					: 'Coś poszło nie tak. Spróbuj ponownie.'
+			);
 		}
 	};
 
 	return (
-		<div className={styles.container}>
-			<img src={logo} alt='CalorIQ logo' className={styles.logo} />
-			<h1 className={styles.header}>
-				Witaj w CalorIQ - aplikacji, która pomoże Ci zadbać o zdrową dietę i
-				osiągnąć cele!
-			</h1>
+		<RedirectIfAuthenticated>
+			<div className={styles.container}>
+				<img src={logo} alt='CalorIQ logo' className={styles.logo} />
+				<h1 className={styles.header}>
+					Witaj w CalorIQ - aplikacji, która pomoże Ci zadbać o zdrową dietę i
+					osiągnąć cele!
+				</h1>
 
-			<div className={styles.formSection}>
-				<div>
-					<h3 className={styles.title}>Zaloguj się</h3>
-					<form
-						onSubmit={handleSubmit(onSubmit)}
-						className={styles.form}
-						noValidate
-						aria-busy={isSubmitting}
-					>
-						<Input
-							type='email'
-							id='email'
-							placeholder='Adres e-mail'
-							{...register('email')}
-							error={errors.email?.message}
-						/>
-						<Input
-							type='password'
-							id='password'
-							placeholder='Hasło'
-							{...register('password')}
-							error={errors.password?.message}
-						/>
-						<Button disabled={isSubmitting} type='submit'>
-							Zaloguj się
+				<div className={styles.formSection}>
+					<div>
+						<h3 className={styles.title}>Zaloguj się</h3>
+
+						{firebaseError && <p className='error'>{firebaseError}</p>}
+
+						<form
+							onSubmit={handleSubmit(onSubmit)}
+							className={styles.form}
+							noValidate
+							aria-busy={isSubmitting}
+						>
+							<Input
+								type='email'
+								id='email'
+								placeholder='Adres e-mail'
+								{...register('email')}
+								error={errors.email?.message}
+							/>
+							<Input
+								type='password'
+								id='password'
+								placeholder='Hasło'
+								{...register('password')}
+								error={errors.password?.message}
+							/>
+							<Button disabled={isSubmitting} type='submit'>
+								Zaloguj się
+							</Button>
+						</form>
+					</div>
+
+					<div className={styles.divider}></div>
+
+					<div>
+						<h3 className={styles.title}>Nie masz jeszcze konta?</h3>
+						<Button as={Link} to='/signup' variant='secondary'>
+							Zarejestruj się
 						</Button>
-					</form>
-				</div>
-
-				<div className={styles.divider}></div>
-
-				<div>
-					<h3 className={styles.title}>Nie masz jeszcze konta?</h3>
-					<Button as={Link} to='/signup' variant='secondary'>
-						Zarejestruj się
-					</Button>
+					</div>
 				</div>
 			</div>
-		</div>
+		</RedirectIfAuthenticated>
 	);
 }
