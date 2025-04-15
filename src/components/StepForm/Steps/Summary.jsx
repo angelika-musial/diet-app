@@ -2,8 +2,25 @@ import Step from './Step';
 import { Loader } from 'lucide-react';
 import styles from '../StepForm.module.scss';
 import Button from '../../Button/Button';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../../services/firebase';
+import { useNavigate } from 'react-router-dom';
+import { profileIsComplete } from '../../../services/profile';
 
 export default function Summary({ loading, tdee }) {
+	const navigate = useNavigate();
+	const [user] = useAuthState(auth);
+
+	const handleComplete = async () => {
+		try {
+			await profileIsComplete(user.uid);
+
+			navigate('/main');
+		} catch (error) {
+			console.error('Failed to mark profile as complete:', error);
+		}
+	};
+
 	return (
 		<>
 			{loading ? (
@@ -28,7 +45,9 @@ export default function Summary({ loading, tdee }) {
 							zbędnych wyrzeczeń!
 						</p>
 					</div>
-					<Button className={styles.completeButton}>Gotowe</Button>
+					<Button onClick={handleComplete} className={styles.completeButton}>
+						Gotowe
+					</Button>
 				</Step>
 			)}
 		</>
