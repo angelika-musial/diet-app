@@ -4,6 +4,7 @@ import StartPage from './pages/StartPage';
 import RegistrationPage from './pages/RegistrationPage';
 import MainPage from './pages/MainPage';
 import ProfileSetup from './pages/ProfileSetup';
+import ProtectedRoutes from './utils/ProtectedRoutes';
 
 const router = createBrowserRouter([
 	{
@@ -12,8 +13,14 @@ const router = createBrowserRouter([
 		children: [
 			{ index: true, element: <StartPage /> },
 			{ path: 'signup', element: <RegistrationPage /> },
-			{ path: 'main', element: <MainPage /> },
-			{ path: 'profile-setup', element: <ProfileSetup /> },
+
+			{
+				element: <ProtectedRoutes />,
+				children: [
+					{ path: 'main', element: <MainPage /> },
+					{ path: 'profile-setup', element: <ProfileSetup /> },
+				],
+			},
 		],
 	},
 ]);
