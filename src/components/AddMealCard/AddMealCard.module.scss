@@ -1,0 +1,55 @@
+.card {
+	width: 80%;
+	max-width: 800px;
+	margin: 3rem auto;
+	background-color: var(--white-color);
+	padding: 1.5rem;
+	border-radius: 1rem;
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.mealRow {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.75rem 1rem;
+	border: 1px solid #dcdcdc;
+	border-radius: 0.75rem;
+	transition: background 0.3s;
+
+	&:hover {
+		background-color: #f5f5f5;
+	}
+}
+
+.icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	background-color: #daefd8;
+	border-radius: 50%;
+	color: var(--dark-green);
+}
+
+.label {
+	flex-grow: 1;
+	margin-left: 0.75rem;
+	font-size: 1rem;
+}
+
+.addButton {
+	background: none;
+	border: none;
+	cursor: pointer;
+	color: var(--dark-green);
+	transition: transform 0.3s;
+
+	&:hover {
+		transform: scale(1.1);
+	}
+}
