@@ -1,31 +1,25 @@
+import AddMealCard from '../../components/AddMealCard/AddMealCard';
+import DailyGoalPanel from '../../components/DailyGoalPanel/DailyGoalPanel';
+import Header from '../../components/Header/Header';
 import useUserStore from '../../store/useUserStore';
-import Button from '../../components/Button/Button';
-import { signOut } from 'firebase/auth';
-import { auth } from '../../services/firebase';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import useProductStore from '../../store/useProductStore';
+import styles from './MainPage.module.scss';
+import { useEffect } from 'react';
 
 export default function MainPage() {
-	const { user, clearUser } = useUserStore();
-	const navigate = useNavigate();
-	const [errorMessage, setErrorMessage] = useState('');
+	const { user } = useUserStore();
+	const { checkDateAndReset } = useProductStore();
 
-	const handleSignout = async () => {
-		try {
-			await signOut(auth);
-			clearUser();
-			navigate('/');
-		} catch (error) {
-			console.error('Błąd wylogowania:', error);
-			setErrorMessage('Ups! Coś poszło nie tak podczas wylogowywania.');
-		}
-	};
+	useEffect(() => {
+		checkDateAndReset();
+	}, []);
 
 	return (
 		<>
-			<h1>Witaj {user?.name}</h1>
-			<Button onClick={handleSignout}>Wyloguj</Button>
-			{errorMessage && <p className={styles.error}>{errorMessage}</p>}
+			<Header />
+			<h2 className={styles.greeting}>Witaj {user?.name}</h2>
+			<DailyGoalPanel />
+			<AddMealCard />
 		</>
 	);
 }
