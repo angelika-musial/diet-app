@@ -1,0 +1,51 @@
+.wrapper {
+	position: relative;
+}
+
+.calendar-icon {
+	cursor: pointer;
+
+	svg {
+		color: #505050;
+		transition: color 0.3s;
+
+		&:hover {
+			color: #000;
+		}
+	}
+}
+
+.dropdown {
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: var(--white-color);
+	padding: 1rem;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown :global(.react-calendar) {
+	background: none;
+	border: none;
+}
+
+.dropdown :global(.react-calendar__navigation button) {
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.dropdown :global(.react-calendar__tile) {
+	border-radius: 8px;
+	transition: background-color 0.3s;
+}
+
+.dropdown :global(.react-calendar__tile--now) {
+	background: #d7eee3;
+}
+
+.dropdown :global(.react-calendar__tile--active) {
+	background: var(--green-color);
+}
