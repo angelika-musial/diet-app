@@ -25,3 +25,15 @@ export const calculateTDEE = (gender, age, weight, height, goal, activity) => {
 
 	return adjustedTDEE;
 };
+
+export const calculateMacros = (tdee) => {
+	const proteins = Math.round((tdee * 0.2) / 4);
+	const fats = Math.round((tdee * 0.3) / 9);
+	const carbs = Math.round((tdee * 0.5) / 4);
+
+	return {
+		proteins,
+		fats,
+		carbs,
+	};
+};
