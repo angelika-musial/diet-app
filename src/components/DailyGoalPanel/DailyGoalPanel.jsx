@@ -12,7 +12,7 @@ import { pl } from 'date-fns/locale';
 const DailyGoalPanel = () => {
 	const [isHistoryOpen, setIsHistoryOpen] = useState(false);
 	const { user } = useUserStore();
-	const { dailyProducts, currentDate } = useProductStore();
+	const { dailyProducts, currentDate, isToday } = useProductStore();
 	const totalCalories = user.tdee;
 	const {
 		proteins: totalProteins,
@@ -51,7 +51,10 @@ const DailyGoalPanel = () => {
 	return (
 		<section className={styles.panel}>
 			<div className={styles.dateHeader}>
-				{format(new Date(currentDate), 'EEEE, d MMMM yyyy', { locale: pl })}
+				{isToday && <p className={styles.today}>Dzisiaj</p>}
+				<p className={styles.date}>
+					{format(new Date(currentDate), 'EEEE, d MMMM yyyy', { locale: pl })}
+				</p>
 			</div>
 			<div className={styles.circleWrapper}>
 				<svg
@@ -126,19 +129,19 @@ const DailyGoalPanel = () => {
 
 			<div className={styles.macros}>
 				<div>
-					<p>Węglowodany</p>
+					<p>Węglowodany:</p>
 					<p>
 						{currentCarbs} / {totalCarbs}g
 					</p>
 				</div>
 				<div>
-					<p>Białko</p>
+					<p>Białko:</p>
 					<p>
 						{currentProteins} / {totalProteins}g
 					</p>
 				</div>
 				<div>
-					<p>Tłuszcze</p>
+					<p>Tłuszcze:</p>
 					<p>
 						{currentFats} / {totalFats}g
 					</p>
