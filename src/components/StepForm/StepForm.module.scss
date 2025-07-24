@@ -122,15 +122,6 @@
 	}
 }
 
-.step-content .error {
-	display: flex;
-	align-items: center;
-	gap: 4px;
-	color: red;
-	font-size: 16px;
-	margin-bottom: 8px;
-}
-
 .arrow-icon {
 	position: absolute;
 	left: -30px;
@@ -225,7 +216,6 @@
 
 	.input {
 		font-size: 1.1rem;
-		width: 70%;
 	}
 
 	.gender-buttons {
@@ -279,6 +269,12 @@
 			width: 110px;
 			font-size: 0.7rem;
 		}
+	}
+}
+
+@media (max-width: 376px) {
+	.input {
+		width: 200px;
 	}
 }
 
