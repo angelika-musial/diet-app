@@ -1,44 +1,3 @@
-.background {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	background: rgba(0, 0, 0, 0.5);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	z-index: 100;
-}
-
-.modal {
-	background: #fff;
-	padding: 2rem;
-	border-radius: 1rem;
-	max-height: 90%;
-	width: 90%;
-	max-width: 700px;
-	position: relative;
-	box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-	display: flex;
-	flex-direction: column;
-	gap: 1.2rem;
-	overflow-y: auto;
-
-	h2 {
-		text-align: center;
-	}
-}
-
-.close-btn {
-	position: absolute;
-	top: 1rem;
-	right: 1rem;
-	background: none;
-	border: none;
-	cursor: pointer;
-}
-
 .meals-section {
 	display: flex;
 	flex-direction: column;
@@ -86,4 +45,34 @@
 	border: none;
 	cursor: pointer;
 	padding: 0.2rem;
+}
+
+@media (max-width: 768px) {
+	.meals-section {
+		gap: 0.75rem;
+	}
+	.meal-section {
+		h3 {
+			font-size: 1.1rem;
+		}
+	}
+}
+
+@media (max-width: 480px) {
+	.meals-section {
+		gap: 0.5rem;
+	}
+	.meal-section {
+		h3 {
+			font-size: 1rem;
+			margin-bottom: 0.2rem;
+		}
+	}
+	.product-item {
+		font-size: 0.8rem;
+	}
+
+	.empty-message {
+		font-size: 0.8rem;
+	}
 }
