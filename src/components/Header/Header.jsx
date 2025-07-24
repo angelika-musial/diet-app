@@ -6,20 +6,25 @@ import Button from '../Button/Button';
 import styles from './Header.module.scss';
 import logo from '../../assets/logo.png';
 import CalendarDropdown from '../CalendarDropdown/CalendarDropdown';
+import useProductStore from '../../store/useProductStore';
+import { toast } from 'react-hot-toast';
 
 const Header = () => {
 	const { clearUser } = useUserStore();
 	const navigate = useNavigate();
+	const { logout } = useProductStore();
 
 	const handleSignout = async () => {
 		try {
 			await signOut(auth);
 			clearUser();
+			logout();
 			navigate('/');
 		} catch (error) {
-			console.error('Błąd wylogowania:', error);
+			toast.error('Wylogowanie nie powiodło się. Spróbuj ponownie.');
 		}
 	};
+
 	return (
 		<>
 			<header>

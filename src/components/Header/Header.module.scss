@@ -5,7 +5,7 @@ header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0.5rem;
+	padding: 0.5rem 0.5rem 0.5rem 1.5rem;
 	background-color: var(--white-color);
 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 
@@ -19,5 +19,46 @@ header {
 		border: none;
 		font-weight: bold;
 		letter-spacing: 1px;
+
+		&:hover {
+			background-color: #f0f0f0;
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	header {
+		.logo {
+			width: 100px;
+		}
+		.signout-button {
+			// font-size: 0.7rem;
+			width: 100px;
+		}
+	}
+}
+
+@media (max-width: 576px) {
+	header {
+		.logo {
+			width: 80px;
+		}
+		.signout-button {
+			font-size: 0.7rem;
+			width: 90px;
+		}
+	}
+}
+
+@media (max-width: 480px) {
+	header {
+		padding: 0.5rem 0.25rem 0.5rem 0.75rem;
+		.logo {
+			width: 70px;
+		}
+		.signout-button {
+			font-size: 0.6rem;
+			width: 80px;
+		}
 	}
 }
