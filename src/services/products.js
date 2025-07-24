@@ -13,20 +13,6 @@ export const saveDailyProductsData = async (uid) => {
 };
 
 export const getProductsData = async (uid, selectedDate) => {
-	const { dailyHistory } = useProductStore.getState();
-
-	// 1. Sprawdzanie czy są dane w cache (Zustand/localStorage)
-	if (dailyHistory[selectedDate]) {
-		const { dailyProducts, mealsHistory } = dailyHistory[selectedDate];
-		useProductStore.setState({
-			currentDate: selectedDate,
-			dailyProducts,
-			mealsHistory,
-		});
-		return;
-	}
-
-	// Pobieranie z Firestore jeśli nie ma w cache
 	const docRef = doc(db, 'users', uid, 'meals', selectedDate);
 	const docSnap = await getDoc(docRef);
 
