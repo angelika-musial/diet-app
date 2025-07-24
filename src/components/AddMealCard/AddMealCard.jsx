@@ -39,6 +39,7 @@ const AddMealCard = () => {
 
 	return (
 		<section className={styles.card}>
+			<h2>Dodaj posiłek</h2>
 			{meals.map((meal) => (
 				<div key={meal.label} className={styles.mealRow}>
 					<div className={styles.icon}>{meal.icon}</div>
