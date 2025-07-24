@@ -1,4 +1,56 @@
 .greeting {
-    margin: 2rem;
-    text-align: center;
+	text-align: center;
+	color: var(--white-color);
+}
+
+.greeting-wrapper {
+	margin: 2rem 0;
+}
+
+.no-greeting {
+	margin: 5.5rem 0;
+}
+
+.content {
+	position: relative;
+	z-index: 10;
+}
+
+.background-image {
+	position: fixed;
+	inset: 0;
+	background-image: url('https://cdn.pixabay.com/photo/2024/10/19/12/21/vegetables-9132663_1280.jpg');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	filter: brightness(0.7);
+}
+
+@media (max-width: 768px) {
+	.greeting {
+		font-size: 1.4rem;
+	}
+
+	.greeting-wrapper {
+		margin: 1.4rem 0;
+	}
+
+	.no-greeting {
+		margin: 3.6rem 0;
+	}
+}
+
+@media (max-width: 480px) {
+	.greeting {
+		font-size: 1.2rem;
+	}
+
+	.greeting-wrapper {
+		margin: 1.2rem 0;
+	}
+
+	.no-greeting {
+		margin: 3rem 0;
+	}
 }
