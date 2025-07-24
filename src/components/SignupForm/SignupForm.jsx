@@ -52,6 +52,7 @@ export default function SignupForm() {
 					id='name'
 					{...register('name')}
 					error={errors.name?.message}
+					className={styles.input}
 				/>
 				<Input
 					placeholder='Nazwisko*'
@@ -59,6 +60,7 @@ export default function SignupForm() {
 					id='surname'
 					{...register('surname')}
 					error={errors.surname?.message}
+					className={styles.input}
 				/>
 				<Input
 					placeholder='E-mail*'
@@ -66,6 +68,7 @@ export default function SignupForm() {
 					id='email'
 					{...register('email')}
 					error={errors.email?.message}
+					className={styles.input}
 				/>
 				<Input
 					placeholder='Hasło*'
@@ -73,6 +76,7 @@ export default function SignupForm() {
 					id='password'
 					{...register('password')}
 					error={errors.password?.message}
+					className={styles.input}
 				/>
 				<Input
 					placeholder='Powtórz hasło*'
@@ -80,6 +84,7 @@ export default function SignupForm() {
 					id='confirmPassword'
 					{...register('confirmPassword')}
 					error={errors.confirmPassword?.message}
+					className={styles.input}
 				/>
 				<Button
 					disabled={isSubmitting}
