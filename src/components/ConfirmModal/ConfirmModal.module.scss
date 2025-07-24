@@ -1,0 +1,36 @@
+.modal {
+	max-width: 500px;
+	padding: 1.5rem;
+}
+
+.message {
+	text-align: center;
+}
+
+.buttons {
+	display: flex;
+	justify-content: center;
+	gap: 2rem;
+	margin-top: 1.5rem;
+
+	.button {
+		width: 100px;
+		font-size: 0.8rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.message {
+		margin-top: 1rem;
+	}
+
+	.buttons {
+		margin-top: 1rem;
+		gap: 1.5rem;
+
+		.button {
+			width: 90px;
+			font-size: 0.7rem;
+		}
+	}
+}
