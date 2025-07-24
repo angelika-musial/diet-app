@@ -4,7 +4,7 @@ import { CircleAlert } from 'lucide-react';
 const Input = ({ label, id, className = '', error, ...props }) => {
 	return (
 		<>
-			<div>
+			<div className={styles.inputWrapper}>
 				<label htmlFor={id}>{label}</label>
 				{error && <p className={styles.error}><CircleAlert size={14} /> {error}</p>}
 				<input
