@@ -1,0 +1,79 @@
+.error-wrapper {
+	text-align: center;
+	padding: 3rem;
+	margin: 4rem auto;
+	background-color: rgba(0, 0, 0, 0.6);
+
+	h1 {
+		font-size: 2.6rem;
+	}
+
+	p {
+		font-size: 1.2rem;
+	}
+
+	h1,
+	p {
+		margin-bottom: 1.5rem;
+		color: var(--white-color);
+	}
+}
+
+.error-background {
+	background-image: url('https://cdn.pixabay.com/photo/2021/01/01/06/47/watermelon-5877895_1280.png');
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+}
+
+@media (max-width: 992px) {
+	.error-wrapper {
+		h1 {
+			font-size: 2.4rem;
+		}
+		p {
+			font-size: 1.1rem;
+		}
+	}
+}
+
+@media (max-width: 768px) {
+	.error-wrapper {
+		padding: 2rem;
+		h1 {
+			font-size: 2.2rem;
+		}
+		p {
+			font-size: 1rem;
+		}
+	}
+}
+
+@media (max-width: 576px) {
+	.error-wrapper {
+		h1 {
+			font-size: 2rem;
+		}
+		p {
+			font-size: 0.95rem;
+		}
+	}
+}
+
+@media (max-width: 480px) {
+	.error-wrapper {
+		padding: 2rem 1rem;
+		h1 {
+			font-size: 1.8rem;
+		}
+		p {
+			font-size: 0.9rem;
+		}
+		.error-button {
+			width: 80%;
+		}
+	}
+}
