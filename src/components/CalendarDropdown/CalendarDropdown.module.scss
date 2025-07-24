@@ -26,11 +26,13 @@
 	border-radius: 8px;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	opacity: 0;
-	transition: opacity 0.2s;
+	visibility: hidden;
+	transition: opacity 0.2s, visibility 0.2s;
 }
 
 .dropdown-open {
 	opacity: 1;
+	visibility: visible;
 }
 
 .dropdown :global(.react-calendar) {
@@ -54,4 +56,45 @@
 
 .dropdown :global(.react-calendar__tile--active) {
 	background: var(--green-color);
+}
+
+@media (max-width: 768px) {
+	.calendar-icon {
+		svg {
+			width: 35px;
+		}
+	}
+
+	.dropdown {
+		width: 320px;
+		padding: 0.5rem;
+
+		:global(.react-calendar) {
+			font-size: 0.9rem;
+		}
+
+		:global(.react-calendar__navigation button) {
+			font-size: 0.8rem;
+		}
+	}
+}
+
+@media (max-width: 480px) {
+	.calendar-icon {
+		svg {
+			width: 30px;
+		}
+	}
+
+	.dropdown {
+		width: 280px;
+
+		:global(.react-calendar) {
+			font-size: 0.8rem;
+		}
+
+		:global(.react-calendar__navigation button) {
+			font-size: 0.7rem;
+		}
+	}
 }
