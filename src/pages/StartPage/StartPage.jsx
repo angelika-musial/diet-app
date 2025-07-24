@@ -49,8 +49,9 @@ export default function StartPage() {
 			<div className={styles.container}>
 				<img src={logo} alt='CalorIQ logo' className={styles.logo} />
 				<h1 className={styles.header}>
-					Witaj w CalorIQ - aplikacji, która pomoże Ci zadbać o zdrową dietę i
-					osiągnąć cele!
+					Witaj w CalorIQ – aplikacji stworzonej, by wspierać Cię w zdrowym
+					stylu życia. Poznaj swoje zapotrzebowanie kaloryczne, dodawaj spożyte
+					produkty i monitoruj kalorie i makroskładniki!
 				</h1>
 
 				<div className={styles.formSection}>

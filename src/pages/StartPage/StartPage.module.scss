@@ -13,7 +13,7 @@
 		font-size: 1.5rem;
 	}
 	.form-section {
-		margin-top: 70px;
+		margin-top: 50px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -96,6 +96,14 @@
 				font-size: 1.1rem;
 				margin-bottom: 10px;
 			}
+		}
+	}
+}
+
+@media (max-width: 376px) {
+	.container {
+		.logo {
+			width: 220px;
 		}
 	}
 }
