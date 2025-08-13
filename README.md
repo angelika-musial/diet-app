@@ -34,10 +34,6 @@
 
 - **Firebase** – user authentication and Firestore database
 
-## Current Status
-
-The application is nearly complete and includes all core features like user registration, calorie calculator, meal tracking and history view. Final improvements are in progress.
-
 ## Installation & Setup
 
 ```bash
