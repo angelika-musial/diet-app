@@ -50,8 +50,8 @@ const ProtectedRoutes = () => {
 
 	if (!user) return <Navigate to='/' />;
 
-	if (!profileComplete && location.pathname !== '/profile-setup') {
-		return <Navigate to='/profile-setup' />;
+	if (!profileComplete && location.pathname !== '/uzupelnij-profil') {
+		return <Navigate to='/uzupelnij-profil' />;
 	}
 
 	return <Outlet />;

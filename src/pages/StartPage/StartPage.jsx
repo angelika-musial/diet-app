@@ -90,7 +90,7 @@ export default function StartPage() {
 
 					<div>
 						<h3 className={styles.title}>Nie masz jeszcze konta?</h3>
-						<Button as={Link} to='/signup' variant='secondary'>
+						<Button as={Link} to='/zarejestruj' variant='secondary'>
 							Zarejestruj się
 						</Button>
 					</div>

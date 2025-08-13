@@ -21,7 +21,9 @@ const Header = () => {
 			logout();
 			navigate('/');
 		} catch (error) {
-			toast.error('Wylogowanie nie powiodło się. Spróbuj ponownie.');
+			toast.error('Wylogowanie nie powiodło się. Spróbuj ponownie.', {
+				id: 'logout-error',
+			});
 		}
 	};
 

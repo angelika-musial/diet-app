@@ -101,7 +101,6 @@ export default function StepForm() {
 				age,
 			};
 
-			// zapis do Firebase
 			if (user) {
 				await saveUserProfileData(user.uid, userData);
 			}

@@ -24,7 +24,7 @@ export default function SignupForm() {
 		try {
 			await registerUser(data);
 
-			navigate('/profile-setup');
+			navigate('/uzupelnij-profil');
 		} catch (error) {
 			setFirebaseError(
 				error.code === 'auth/email-already-in-use'

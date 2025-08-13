@@ -27,11 +27,11 @@ const RedirectIfAuthenticated = ({ children }) => {
 
 	if (loading || (user && profileComplete === null)) return null;
 
-	if (user && !profileComplete && location.pathname !== '/profile-setup') {
-		return <Navigate to='/profile-setup' />;
+	if (user && !profileComplete && location.pathname !== '/uzupelnij-profil') {
+		return <Navigate to='/uzupelnij-profil' />;
 	}
 
-	if (user && profileComplete) return <Navigate to='/main' />;
+	if (user && profileComplete) return <Navigate to='/panel' />;
 
 	return children;
 };

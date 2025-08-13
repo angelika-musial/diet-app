@@ -25,10 +25,7 @@ const CalendarDropdown = () => {
 		if (!user?.uid) return;
 
 		const history = useProductStore.getState().dailyHistory[dateStr];
-		if (history) {
-			console.log('Dane z cache:', history);
-			return;
-		}
+		if (history) return;
 
 		await getProductsData(user.uid, dateStr);
 	};

@@ -15,13 +15,13 @@ const router = createBrowserRouter([
 		errorElement: <ErrorPage />,
 		children: [
 			{ index: true, element: <StartPage /> },
-			{ path: 'signup', element: <RegistrationPage /> },
+			{ path: 'zarejestruj', element: <RegistrationPage /> },
 
 			{
 				element: <ProtectedRoutes />,
 				children: [
-					{ path: 'main', element: <MainPage /> },
-					{ path: 'profile-setup', element: <ProfileSetup /> },
+					{ path: 'panel', element: <MainPage /> },
+					{ path: 'uzupelnij-profil', element: <ProfileSetup /> },
 				],
 			},
 		],

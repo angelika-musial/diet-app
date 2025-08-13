@@ -16,7 +16,7 @@ export default function Summary({ loading, tdee }) {
 	const handleComplete = async () => {
 		setIsCompleting(true);
 		await profileIsComplete(user.uid);
-		navigate('/main');
+		navigate('/panel');
 	};
 
 	if (loading) {
