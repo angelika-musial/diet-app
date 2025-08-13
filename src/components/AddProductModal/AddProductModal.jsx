@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
-import { X, Plus, Trash2 } from 'lucide-react';
-import styles from './AddProductModal.module.scss';
+import { Plus, Trash2 } from 'lucide-react';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 import useProductStore from '../../store/useProductStore';
+import ModalWrapper from '../ModalWrapper/ModalWrapper';
+import styles from './AddProductModal.module.scss';
+import toast from 'react-hot-toast';
+import ConfirmModal from '../ConfirmModal/ConfirmModal';
 
 const cache = new Map();
 
@@ -14,6 +17,7 @@ const AddProductModal = ({ isOpen, onClose, onAddProducts, meal }) => {
 	const [grams, setGrams] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [noResults, setNoResults] = useState(false);
+	const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
 	const {
 		products: addedProducts,
@@ -72,7 +76,7 @@ const AddProductModal = ({ isOpen, onClose, onAddProducts, meal }) => {
 
 				const data = await response.json();
 
-				const term = searchTerm.toLowerCase();
+				const term = searchTerm.trim().toLowerCase();
 
 				const filtered = data.products
 					.filter((product) => {
@@ -107,7 +111,9 @@ const AddProductModal = ({ isOpen, onClose, onAddProducts, meal }) => {
 				setNoResults(filtered.length === 0);
 			} catch (error) {
 				if (error.name !== 'AbortError') {
-					console.error('Błąd pobierania danych:', error);
+					toast.error('Błąd pobierania danych. Spróbuj ponownie.', {
+						id: 'error',
+					});
 					setProducts([]);
 					setNoResults(true);
 				}
@@ -133,18 +139,24 @@ const AddProductModal = ({ isOpen, onClose, onAddProducts, meal }) => {
 			);
 
 		if (!product || !grams) {
-			alert('Musisz wpisać nazwę produktu i jego ilość.');
+			toast.error('Musisz wpisać nazwę produktu i jego ilość.', {
+				id: 'missing-fields',
+			});
 			return;
 		}
 
 		if (grams <= 0) {
-			alert('Podaj prawidłową ilość gramów.');
+			toast.error('Podaj prawidłową ilość gramów.', {
+				id: 'invalid-grams',
+			});
 			return;
 		}
 
 		const kcalPer100 = product.nutriments?.['energy-kcal_100g'];
 		if (!kcalPer100) {
-			alert('Brak danych o kaloriach dla tego produktu.');
+			toast.error('Brak danych o kaloriach dla tego produktu.', {
+				id: 'no-kcal',
+			});
 			return;
 		}
 
@@ -178,36 +190,46 @@ const AddProductModal = ({ isOpen, onClose, onAddProducts, meal }) => {
 	const handleAddProducts = () => {
 		onAddProducts(addedProducts);
 		onClose();
+		toast.success('Produkty dodano do bilansu!');
 	};
 
 	const handleClose = () => {
-		if (
-			addedProducts.length > 0 &&
-			!window.confirm('Czy na pewno chcesz opuścić panel? Utracisz dane.')
-		) {
-			return;
+		if (addedProducts.length > 0) {
+			setIsConfirmOpen(true);
+		} else {
+			onClose();
 		}
+	};
+
+	const confirmClose = () => {
+		setIsConfirmOpen(false);
 		onClose();
 	};
 
-	if (!isOpen) return;
+	const cancelClose = () => {
+		setIsConfirmOpen(false);
+	};
 
 	return (
-		<div className={styles.background}>
-			<div className={styles.modal}>
-				<button onClick={handleClose} className={styles.closeBtn}>
-					<X size={20} />
-				</button>
-
-				<h2>{meal}</h2>
-
+		<>
+			<ModalWrapper
+				isOpen={isOpen}
+				onClose={handleClose}
+				title={meal}
+				className={styles.modal}
+			>
+				<p className={styles.instruction}>
+					Wyszukaj produkty i wpisz ich ilość w gramach zatwierdzając każdy z
+					nich plusem (<strong>+</strong>). Żeby zapisać je do dziennego
+					bilansu, kliknij <strong>Dodaj</strong>.
+				</p>
 				<div className={styles.inputsWrapper}>
 					<Input
 						type='text'
 						placeholder='Wpisz nazwę produktu'
 						value={searchTerm}
 						onChange={(e) => {
-							setSearchTerm(e.target.value);
+							setSearchTerm(e.target.value.trimStart());
 							setSelectedProduct(null);
 						}}
 						className={styles.input}
@@ -262,14 +284,22 @@ const AddProductModal = ({ isOpen, onClose, onAddProducts, meal }) => {
 				)}
 
 				<Button
-					className={styles.addBtn}
+					className={`${styles.addBtn} ${
+						addedProducts.length === 0 ? styles.disabled : ''
+					}`}
 					onClick={handleAddProducts}
 					disabled={addedProducts.length === 0}
 				>
 					Dodaj
 				</Button>
-			</div>
-		</div>
+			</ModalWrapper>
+			<ConfirmModal
+				isOpen={isConfirmOpen}
+				message='Czy na pewno chcesz opuścić panel? Utracisz dane.'
+				onConfirm={confirmClose}
+				onCancel={cancelClose}
+			/>
+		</>
 	);
 };
 
