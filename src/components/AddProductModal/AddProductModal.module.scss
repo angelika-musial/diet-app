@@ -1,68 +1,43 @@
-.background {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	background: rgba(0, 0, 0, 0.5);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	z-index: 100;
-}
-
 .modal {
-	background: #fff;
-	padding: 2rem;
-	border-radius: 1rem;
-	max-height: 90%;
-	width: 90%;
-	max-width: 500px;
-	position: relative;
-	box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-	display: flex;
-	flex-direction: column;
-	gap: 1.2rem;
+	max-width: 530px;
 }
 
-.close-btn {
-	position: absolute;
-	top: 1rem;
-	right: 1rem;
-	background: none;
-	border: none;
-	cursor: pointer;
+.instruction {
+	font-size: 1rem;
+	margin-bottom: 1rem;
 }
 
 .inputs-wrapper {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-}
+	gap: 0.5rem;
 
-.input {
-	flex: 1;
-}
-
-.gram-input {
-	width: 80px;
-}
-
-.plus-btn {
-	background: none;
-	border: none;
-	cursor: pointer;
-	color: var(--dark-green);
-	transition: transform 0.3s;
-
-	&:hover {
-		transform: scale(1.1);
+	.gram-input {
+		width: 80px;
 	}
+
+	.plus-btn {
+		background: none;
+		border: none;
+		cursor: pointer;
+		color: var(--dark-green);
+		transition: transform 0.3s;
+
+		&:hover {
+			transform: scale(1.1);
+		}
+	}
+}
+
+.info {
+	margin-top: 0.5rem;
 }
 
 .results {
 	display: flex;
 	flex-direction: column;
+	margin-top: 0.5rem;
 	max-height: 220px;
 	overflow-y: auto;
 	background: var(--white-color);
@@ -94,7 +69,7 @@
 .added-item {
 	display: flex;
 	justify-content: space-between;
-	gap: 1rem;
+	gap: 0.5rem;
 	align-items: center;
 	background: #f9f9f9;
 	padding: 0.5rem;
@@ -122,18 +97,45 @@
 	width: 100%;
 }
 
+.disabled {
+	border: none;
+	background-color: #ccc;
+	color: #666;
+	opacity: 0.8;
+	pointer-events: none;
+}
+
 @media (max-width: 576px) {
 	.results {
 		max-height: 170px;
 	}
 
-	.input {
-		width: 250px;
+	.inputs-wrapper {
+		.input {
+			width: 250px;
+		}
 	}
 }
 
 @media (max-width: 480px) {
-	.input {
-		width: 200px;
+	.inputs-wrapper {
+		.input {
+			width: 100%;
+		}
+	}
+
+	.instruction {
+		font-size: 0.9rem;
+	}
+	.results {
+		font-size: 0.9rem;
+	}
+}
+
+@media (max-width: 376px) {
+	.inputs-wrapper {
+		.gram-input {
+			width: 65px;
+		}
 	}
 }
