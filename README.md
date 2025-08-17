@@ -2,6 +2,8 @@
 
 **CalorIQ** is a dietary application designed to help users calculate their daily caloric needs, track food intake and maintain healthy eating habits based on personalized goals such as weight loss, gain or maintenance.
 
+**Live Demo:** [View CalorIQ](https://caloriq.netlify.app)
+
 ## Features
 
 - **User Authentication** – registration and login system using Firebase Auth
