@@ -30,15 +30,17 @@ const Header = () => {
 	return (
 		<>
 			<header>
-				<img src={logo} alt='CalorIQ logo' className={styles.logo} />
-				<CalendarDropdown />
-				<Button
-					variant='secondary'
-					onClick={handleSignout}
-					className={styles.signoutButton}
-				>
-					Wyloguj
-				</Button>
+				<div className={styles.container}>
+					<img src={logo} alt='CalorIQ logo' className={styles.logo} />
+					<CalendarDropdown />
+					<Button
+						variant='secondary'
+						onClick={handleSignout}
+						className={styles.signoutButton}
+					>
+						Wyloguj
+					</Button>
+				</div>
 			</header>
 		</>
 	);
