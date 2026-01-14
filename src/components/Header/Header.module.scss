@@ -2,7 +2,7 @@ header {
 	position: sticky;
 	top: 0;
 	z-index: 5;
-	padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+	padding: 0.5rem 1.5rem;
 	background-color: var(--white-color);
 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 
@@ -17,26 +17,11 @@ header {
 	.logo {
 		width: 120px;
 	}
-
-	.signout-button {
-		width: 120px;
-		background: none;
-		border: none;
-		font-weight: bold;
-		letter-spacing: 1px;
-
-		&:hover {
-			background-color: #f0f0f0;
-		}
-	}
 }
 
 @media (max-width: 768px) {
 	header {
 		.logo {
-			width: 100px;
-		}
-		.signout-button {
 			width: 100px;
 		}
 	}
@@ -45,10 +30,6 @@ header {
 @media (max-width: 576px) {
 	header {
 		.logo {
-			width: 90px;
-		}
-		.signout-button {
-			font-size: 0.8rem;
 			width: 90px;
 		}
 	}

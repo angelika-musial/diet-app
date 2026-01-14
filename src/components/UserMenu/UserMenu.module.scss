@@ -1,0 +1,62 @@
+.wrapper {
+	position: relative;
+}
+
+.icon-button {
+	padding: 0.5rem;
+	background: none;
+	border: none;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+}
+
+.dropdown {
+	position: absolute;
+	right: 0;
+	background: #fff;
+	border-radius: 12px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+	width: 170px;
+	padding: 8px;
+	z-index: 100;
+
+	button {
+		width: 100%;
+		font-size: 1rem;
+		background: none;
+		border: none;
+		padding: 10px 12px;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		cursor: pointer;
+		border-radius: 8px;
+
+		&:hover {
+			background: #f4f4f4;
+		}
+	}
+}
+
+.logout {
+	color: #e53935;
+}
+
+@media (max-width: 480px) {
+	.icon-button {
+		svg {
+			width: 25px;
+		}
+	}
+
+	.dropdown {
+		width: 150px;
+		button {
+			font-size: 0.9rem;
+			svg {
+                width: 20px;
+			}
+		}
+	}
+}
