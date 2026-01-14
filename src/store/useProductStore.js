@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { format } from 'date-fns';
 import { auth } from '../services/firebase';
+import useUserStore from './useUserStore';
 
 const todayStr = format(new Date(), 'yyyy-MM-dd');
 
@@ -39,7 +40,11 @@ const actions = (set, get) => ({
 			};
 			const dailyHistory = {
 				...state.dailyHistory,
-				[currentDate]: { dailyProducts, mealsHistory },
+				[currentDate]: {
+					...state.dailyHistory[currentDate],
+					dailyProducts,
+					mealsHistory,
+				},
 			};
 			return { dailyProducts, mealsHistory, dailyHistory };
 		}),
@@ -61,9 +66,14 @@ const actions = (set, get) => ({
 				date: state.currentDate,
 			}));
 
+			const isToday = state.currentDate === format(new Date(), 'yyyy-MM-dd');
+
 			const newDailyHistory = {
 				...state.dailyHistory,
 				[state.currentDate]: {
+					tdee: isToday
+						? useUserStore.getState().user?.tdee
+						: state.dailyHistory[state.currentDate]?.tdee,
 					dailyProducts: [
 						...(state.dailyHistory[state.currentDate].dailyProducts || []),
 						...productsWithDate,
@@ -96,25 +106,62 @@ const actions = (set, get) => ({
 			};
 		}),
 
+	updateTodayTdee: (newTdee) =>
+		set((state) => {
+			const todayStr = format(new Date(), 'yyyy-MM-dd');
+
+			const todayData = state.dailyHistory[todayStr];
+			if (!todayData) return {};
+
+			return {
+				dailyHistory: {
+					...state.dailyHistory,
+					[todayStr]: {
+						...todayData,
+						tdee: newTdee,
+					},
+				},
+			};
+		}),
+
 	setSelectedDate: (date) => {
 		const dateStr = format(date, 'yyyy-MM-dd');
 		const todayStr = format(new Date(), 'yyyy-MM-dd');
-		const history = get().dailyHistory[dateStr] || {
-			dailyProducts: [],
-			mealsHistory: {
-				Śniadanie: [],
-				Obiad: [],
-				Kolacja: [],
-				Przekąski: [],
-			},
-		};
+		const isToday = dateStr === todayStr;
 
-		set({
+		const existingDay = get().dailyHistory[dateStr];
+		const userTdee = useUserStore.getState().user?.tdee ?? 0;
+
+		let dayData;
+
+		if (existingDay) {
+			dayData = {
+				...existingDay,
+				tdee: isToday ? userTdee : existingDay.tdee,
+			};
+		} else {
+			dayData = {
+				tdee: userTdee,
+				dailyProducts: [],
+				mealsHistory: {
+					Śniadanie: [],
+					Obiad: [],
+					Kolacja: [],
+					Przekąski: [],
+				},
+			};
+		}
+
+		set((state) => ({
 			currentDate: dateStr,
-			isToday: dateStr === todayStr,
-			dailyProducts: history.dailyProducts,
-			mealsHistory: history.mealsHistory,
-		});
+			isToday,
+			dailyProducts: dayData.dailyProducts,
+			mealsHistory: dayData.mealsHistory,
+			dailyHistory: {
+				...state.dailyHistory,
+				[dateStr]: dayData,
+			},
+		}));
 	},
 
 	checkDateAndReset: () => {
