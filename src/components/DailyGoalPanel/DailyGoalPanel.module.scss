@@ -48,8 +48,9 @@
 	width: 100%;
 	div {
 		text-align: center;
-		p {
-			margin: 0.4rem 0;
+		p:first-child {
+			margin: 0.5rem 0;
+			font-weight: bold;
 		}
 	}
 }
@@ -142,6 +143,7 @@
 		div {
 			display: flex;
 			justify-content: center;
+			align-items: center;
 			gap: 0.75rem;
 		}
 	}
