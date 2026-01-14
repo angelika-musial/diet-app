@@ -5,6 +5,7 @@ import StartPage from './pages/StartPage/StartPage';
 import RegistrationPage from './pages/RegistrationPage';
 import MainPage from './pages/MainPage/MainPage';
 import ProfileSetup from './pages/ProfileSetup';
+import ProfileSettingsPage from './pages/ProfileSettingsPage/ProfileSettingsPage';
 import ProtectedRoutes from './utils/ProtectedRoutes';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
 				element: <ProtectedRoutes />,
 				children: [
 					{ path: 'panel', element: <MainPage /> },
+					{ path: 'panel/ustawienia', element: <ProfileSettingsPage /> },
 					{ path: 'uzupelnij-profil', element: <ProfileSetup /> },
 				],
 			},
