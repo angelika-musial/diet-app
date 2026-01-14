@@ -12,8 +12,10 @@ import { pl } from 'date-fns/locale';
 const DailyGoalPanel = () => {
 	const [isHistoryOpen, setIsHistoryOpen] = useState(false);
 	const { user } = useUserStore();
-	const { dailyProducts, currentDate, isToday } = useProductStore();
-	const totalCalories = user.tdee;
+	const { dailyProducts, currentDate, isToday, dailyHistory } =
+		useProductStore();
+	const dayData = dailyHistory[currentDate];
+	const totalCalories = isToday && user?.tdee ? user.tdee : dayData?.tdee || 0;
 	const {
 		proteins: totalProteins,
 		carbs: totalCarbs,
