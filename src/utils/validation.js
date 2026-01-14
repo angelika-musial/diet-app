@@ -40,7 +40,26 @@ export const signupSchema = loginSchema
 
 export const stepFormSchema = z.object({
 	gender: z.string(),
-	birthdate: z.string().min(1, 'Podaj datę urodzenia'),
+	birthdate: z.coerce
+		.date()
+		.min(new Date('1900-01-01'), 'Nieprawidłowa data')
+		.max(new Date(), 'Data nie może być z przyszłości'),
+	weight: z.preprocess(
+		(val) => (val === '' || val === null ? NaN : Number(val)),
+		z.number().min(1, 'Podaj prawidłową wagę').max(500, 'Podaj prawidłową wagę')
+	),
+	height: z.preprocess(
+		(val) => (val === '' || val === null ? NaN : Number(val)),
+		z
+			.number()
+			.min(90, 'Podaj prawidłowy wzrost')
+			.max(250, 'Podaj prawidłowy wzrost')
+	),
+	goal: z.number(),
+	activity: z.number(),
+});
+
+export const profileSettingsSchema = z.object({
 	weight: z.preprocess(
 		(val) => (val === '' || val === null ? NaN : Number(val)),
 		z.number().min(1, 'Podaj prawidłową wagę').max(500, 'Podaj prawidłową wagę')
